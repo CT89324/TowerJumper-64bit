@@ -205,7 +205,7 @@ func _land(body: Node) -> void:
 	acceleration_sound.stop()
 
 	meteor_particles.emitting = false
-	rigid.gravity_scale = 1.5
+	rigid.gravity_scale = 1.0
 
 	decal_raycast.force_raycast_update()
 	var decal_collider = decal_raycast.get_collider()
