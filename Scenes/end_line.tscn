@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Scenes/end_line.gd" id="1_end_l"]
+[ext_resource type="AudioStream" path="res://Sound/Tlin.ogg" id="2_Tlino"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1"]
+size = Vector3(60, 8, 60)
+
+[node name="Area" type="Area3D" groups=["deleter", "end_line"]]
+collision_layer = 6
+collision_mask = 6
+script = ExtResource("1_end_l")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.02724, 0)
+shape = SubResource("BoxShape3D_1")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Children" type="Node3D" parent="."]
+
+[node name="StreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_Tlino")
+volume_db = 14.0
+
+[connection signal="body_entered" from="." to="." method="_on_Area_body_enter"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

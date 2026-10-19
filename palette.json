@@ -1,0 +1,21 @@
+{
+  "player": "63e40b",
+  "comment": "Each environment entry is [regular segment, bad segment, column]. Keep the bad segment clearly distinguishable from the column (issue #49).",
+  "environment": [
+    ["cea7e5", "fe4188", "7f339a"],
+    ["f5fd99", "f2952a", "a84f28"],
+    ["b7ecfe", "528ef5", "293acd"],
+    ["fd9e9e", "db683b", "e2ea45"],
+    ["d8d8d8", "414141", "8f6f6f"],
+    ["db9dc5", "732991", "579aa3"],
+    ["df3819", "0a030a", "a8917a"],
+    ["93eebd", "4b485e", "51a87b"],
+    ["fbfdf0", "d201af", "d0a2c4"],
+    ["27ebe8", "9b0a38", "e0a458"],
+    ["fcfff6", "c51eda", "2e1560"],
+    ["8b64fa", "0b0c38", "4d1bd9"],
+    ["334455", "ee0000", "222222"]
+  ],
+  "shadow_button_pattern": {"enabled": [0, 0, 0, 0, 1, 1, 1, 1], "disabled": [0, 0, 0, 0, 2, 2, 2, 2]},
+  "sound_button_pattern": {"enabled": [0, 1, 0, 0, 1, 1, 1, 0], "disabled": [0, 2, 0, 0, 2, 2, 2, 0]}
+}

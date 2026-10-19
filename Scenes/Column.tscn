@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://Scenes/Column.gd" id="1_Colum"]
+[ext_resource type="PackedScene" path="res://Scenes/Player.tscn" id="2_Playe"]
+[ext_resource type="Script" path="res://platforms_deployer.gd" id="3_platf"]
+[ext_resource type="Material" path="res://Materials/mat_column.tres" id="4_mat_c"]
+[ext_resource type="ArrayMesh" path="res://Mesh/column.obj" id="5_colum"]
+
+[node name="Spatial" type="Node3D"]
+script = ExtResource("1_Colum")
+
+[node name="Player" parent="." instance=ExtResource("2_Playe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.27751, 0)
+
+[node name="Axis" type="Node3D" parent="."]
+script = ExtResource("3_platf")
+MAX_PLATFORMS = 100
+space = 7
+n_platforms = 30
+
+[node name="Column" type="MeshInstance3D" parent="Axis"]
+transform = Transform3D(2.55, 0, 0, 0, 1, 0, 0, 0, 2.55, 0, 0, 0)
+material_override = ExtResource("4_mat_c")
+mesh = ExtResource("5_colum")
+
+[node name="DirectionalLight" type="DirectionalLight3D" parent="." groups=["light"]]
+transform = Transform3D(0.403186, 0.638602, -0.65546, 0, 0.716257, 0.697836, 0.915118, -0.281357, 0.288785, 0, 0, -21.773)
+light_energy = 0.45
+shadow_enabled = true
+shadow_bias = 0.05
+shadow_normal_bias = 1.0
+directional_shadow_mode = 0
+directional_shadow_max_distance = 40.0

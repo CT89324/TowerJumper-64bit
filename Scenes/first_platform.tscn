@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Scenes/first_platform.gd" id="1_first"]
+[ext_resource type="AudioStream" path="res://Sound/explosion.ogg" id="2_explo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1"]
+size = Vector3(0.55644, 0.422004, 0.523648)
+
+[node name="Platform" type="Node3D"]
+script = ExtResource("1_first")
+
+[node name="Children" type="Node3D" parent="."]
+
+[node name="Area" type="Area3D" parent="." groups=["deleter"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.240012, 0)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape" type="CollisionShape3D" parent="Area"]
+shape = SubResource("BoxShape3D_1")
+
+[node name="RegularExplosion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_explo")
+volume_db = 10.0
+
+[connection signal="body_entered" from="Area" to="." method="_on_Area_body_enter"]

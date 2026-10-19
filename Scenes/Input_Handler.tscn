@@ -1,0 +1,115 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://input_handler.gd" id="1_input"]
+[ext_resource type="PackedScene" path="res://Scenes/Column.tscn" id="2_Colum"]
+[ext_resource type="Texture2D" path="res://Sprites/Particle.png" id="3_Parti"]
+[ext_resource type="Script" path="res://points_handler.gd" id="4_point"]
+[ext_resource type="PackedScene" path="res://Scenes/default_button.tscn" id="5_defau"]
+[ext_resource type="Script" path="res://Scenes/button_shadow.tres.gd" id="6_butto"]
+[ext_resource type="FontFile" path="res://Fonts/Eunomia-Regular.otf" id="7_Eunom"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1"]
+bg_color = Color(1, 0.988281, 0.988281, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2"]
+bg_color = Color(0.235294, 0.223529, 0.254902, 1)
+
+[sub_resource type="GDScript" id="GDScript_3"]
+script/source = "extends ProgressBar\n\nfunc update_progress_value():\n\tvalue = global.progress\n\nfunc _ready():\n\tmax_value = global.level_size\n\tvalue = global.progress\n\tglobal.update_progress.connect(update_progress_value)\n"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4"]
+blend_mode = 1
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_input")
+
+[node name="Spatial" parent="." instance=ExtResource("2_Colum")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Particles2D" type="CPUParticles2D" parent="."]
+z_index = -100
+material = SubResource("CanvasItemMaterial_4")
+modulate = Color(1, 1, 1, 0.07)
+position = Vector2(360, 640)
+amount = 32
+texture = ExtResource("3_Parti")
+lifetime = 20.0
+preprocess = 20.0
+emission_shape = 3
+emission_rect_extents = Vector2(500, 700)
+direction = Vector2(0, -1)
+spread = 10.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+scale_amount_min = 0.1
+scale_amount_max = 1.3
+
+[node name="PointsHadler" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 121.0
+offset_right = 720.0
+offset_bottom = 376.0
+mouse_filter = 2
+script = ExtResource("4_point")
+
+[node name="TotalPoints" type="Label" parent="PointsHadler"]
+layout_mode = 0
+offset_top = 67.0
+offset_right = 720.0
+offset_bottom = 157.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.941406, 0.964752, 1)
+theme_override_fonts/font = ExtResource("7_Eunom")
+theme_override_font_sizes/font_size = 84
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 112.0
+offset_right = 601.0
+offset_bottom = 170.0
+theme_override_styles/background = SubResource("StyleBoxFlat_2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1")
+max_value = 30.0
+step = 1.0
+show_percentage = false
+script = SubResource("GDScript_3")
+
+[node name="LevelLabel" type="Label" parent="."]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 720.0
+offset_bottom = 104.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.941406, 0.964752, 1)
+theme_override_fonts/font = ExtResource("7_Eunom")
+theme_override_font_sizes/font_size = 96
+text = "Level"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonSound" parent="." instance=ExtResource("5_defau")]
+offset_left = 549.0
+offset_top = -33.0
+offset_right = 645.0
+offset_bottom = 14.0
+config_name = "sound_enabled"
+pattern_name = "sound_button_pattern"
+
+[node name="ButtonShadow" parent="." instance=ExtResource("5_defau")]
+offset_left = -59.0
+offset_top = -33.0
+offset_right = 37.0
+offset_bottom = 14.0
+script = ExtResource("6_butto")
