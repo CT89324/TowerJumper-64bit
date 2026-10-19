@@ -35,9 +35,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 [node name="Particles2D" type="CPUParticles2D" parent="."]
 z_index = -100
 material = SubResource("CanvasItemMaterial_4")
-modulate = Color(1, 1, 1, 0.07)
+modulate = Color(1, 1, 1, 0.03)
 position = Vector2(360, 640)
-amount = 32
+amount = 10
 texture = ExtResource("3_Parti")
 lifetime = 20.0
 preprocess = 20.0
